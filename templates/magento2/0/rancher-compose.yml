@@ -1,0 +1,39 @@
+.catalog:
+  name: "Magento2"
+  version: "1.0.0"
+  description: "Magento2"
+  uuid: magento2-1.0.0
+  minimum_rancher_version: v0.51.0
+  questions:
+    - variable: "vhost"
+      label: "Virtual Host:"
+      required: true
+      type: "string"
+    - variable: "magento_repo_public"
+      label: "Magento Repo Public"
+      required: true
+      type: "string"
+    - variable: "magento_repo_private"
+      label: "Magento Repo Private"
+      required: true
+      type: "password"
+    - variable: "github_api_token"
+      label: "Github Api Token"
+      required: true
+      type: "password"
+    - variable: "magento_mode"
+      label: "Magento Deploy Mode"
+      required: true
+      type: "enum"
+      default: "developer"
+      options:
+        - "developer"
+        - "production"
+    - variable: "deploy_sample_data"
+      label: "Should deploy Sample Data"
+      required: true
+      type: "enum"
+      default: "Yes"
+      options:
+        - "Yes"
+        - "No"

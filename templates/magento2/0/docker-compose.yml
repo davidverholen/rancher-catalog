@@ -1,0 +1,70 @@
+version: '2'
+services:
+  app:
+    image: davidverholen/magento2-sample-data-appserver:latest
+    expose:
+      - 9000
+    hostname: app
+    links:
+      - db
+    depends_on:
+      - db
+    volumes:
+      - /var/www/html
+      - magento2-frontend-server-magento2-var:/var/www/html/var
+      - magento2-frontend-server-magento2-app-etc:/var/www/html/app/etc
+      - magento2-frontend-server-magento2-media:/var/www/html/pub/media
+
+  web:
+    image: davidverholen/magento2-sample-data-webserver:latest
+    ports:
+      - 80:80
+    hostname: web
+    volumes_from:
+      - app
+    links:
+      - app:appserver
+    environment:
+      - VIRTUAL_HOST=${vhost}
+    depends_on:
+      - app
+
+  setup:
+    image: davidverholen/magento2-sample-data-setup:latest
+    hostname: setup
+    environment:
+      - MAGENTO_MODE=production
+      - MAGENTO_DEPLOY_SAMPLE_DATA=${deploy_sample_data}
+      - MAGENTO_REPO_USERNAME=${magento_repo_public}
+      - MAGENTO_REPO_PASSWORD=${magento_repo_private}
+      - GITHUB_API_TOKEN=${github_api_token}
+    links:
+      - db
+    volumes_from:
+      - app
+    depends_on:
+      - app
+      - db
+
+  db:
+    image: mariadb:10
+    hostname: db
+    expose:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=magento
+      - MYSQL_DATABASE=magento
+      - MYSQL_USER=magento
+      - MYSQL_PASSWORD=magento
+    volumes:
+      - magento2-frontend-server-db:/var/lib/mysql
+
+volumes:
+  magento2-frontend-server-db:
+    driver: local
+  magento2-frontend-server-magento2-var:
+    driver: local
+  magento2-frontend-server-magento2-app-etc:
+    driver: local
+  magento2-frontend-server-magento2-media:
+    driver: local
