@@ -1,13 +1,13 @@
 gitlab-server:
   ports:
-  - :22/tcp
+    - :22/tcp
   expose:
-  - 80
+    - 80
   hostname: ${host}
   environment:
-  - VIRTUAL_HOST=${host}
+    - VIRTUAL_HOST=${host}
   image: gitlab/gitlab-ce:8.8.2-ce.0
   volumes:
-  - gitlab-etc:/etc/gitlab
-  - gitlab-log:/var/log/gitlab
-  - gitlab-opt:/var/opt/gitlab
+    - ${host}-etc:/etc/gitlab
+    - ${host}-log:/var/log/gitlab
+    - ${host}-opt:/var/opt/gitlab
