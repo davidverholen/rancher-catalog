@@ -5,8 +5,9 @@ gitlab-server:
     - 80
   hostname: ${host}
   environment:
-    - GITLAB_OMNIBUS_CONFIG="external_url 'https://${host}/'";
+    - GITLAB_OMNIBUS_CONFIG=external_url 'https://gitlab.verholen.com/';nginx['listen_port']=80;nginx['listen_https']=false;nginx['proxy_set_headers']={"X-Forwarded-Proto"=>"https","X-Forwarded-Ssl"=>"on"};
     - VIRTUAL_HOST=${host}
+    - GITLAB_HOST=${host}
     - VIRTUAL_PROTO=http
     - LETSENCRYPT_HOST=${host}
     - LETSENCRYPT_EMAIL=${mail}
