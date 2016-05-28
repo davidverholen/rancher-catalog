@@ -25,7 +25,9 @@ services:
     links:
       - app:appserver
     environment:
-      - VIRTUAL_HOST=${vhost}
+      - VIRTUAL_HOST=${host}
+      - LETSENCRYPT_HOST=${host}
+      - LETSENCRYPT_EMAIL=${mail}
     depends_on:
       - app
 

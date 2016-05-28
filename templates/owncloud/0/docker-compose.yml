@@ -4,6 +4,8 @@ server:
     - db
   environment:
     - VIRTUAL_HOST=${host}
+    - LETSENCRYPT_HOST=${host}
+    - LETSENCRYPT_EMAIL=${mail}
   volumes:
     - ${host}-apps:/var/www/html/apps
     - ${host}-config:/var/www/html/config

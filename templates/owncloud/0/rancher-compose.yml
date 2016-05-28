@@ -10,6 +10,12 @@
       required: true
       default: "cloud.example.com"
       type: "string"
+    - variable: "mail"
+      description: "Lest Encrypt Mail"
+      label: "Mail"
+      required: true
+      default: "user@domain.tld"
+      type: "string"
 
 owncloud-server:
   scale: 1

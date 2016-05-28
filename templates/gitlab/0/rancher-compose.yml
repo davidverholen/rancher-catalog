@@ -13,6 +13,12 @@
       required: true
       default: "git.example.com"
       type: "string"
+    - variable: "mail"
+      description: "Lest Encrypt Mail"
+      label: "Mail"
+      required: true
+      default: "user@domain.tld"
+      type: "string"
 
 gitlab-server:
   scale: 1
