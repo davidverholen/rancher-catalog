@@ -3,8 +3,6 @@ gitlab-server:
   - :22/tcp
   expose:
   - 80
-  labels:
-    io.rancher.sidekicks: gitlab-data
   hostname: ${host}
   environment:
   - VIRTUAL_HOST=${host}
