@@ -1,6 +1,6 @@
 gitlab-runner:
   hostname: gitlab-runnner-${name}
-  image: gitlab/gitlab-runner:1.2.0
+  image: gitlab/gitlab-runner:v1.2.0
   restart: always
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
