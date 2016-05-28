@@ -5,9 +5,9 @@ server:
   environment:
     - VIRTUAL_HOST=${host}
   volumes:
-    ${host}-apps:/var/www/html/apps
-    ${host}-config:/var/www/html/config
-    ${host}-data:/var/www/html/data
+    - ${host}-apps:/var/www/html/apps
+    - ${host}-config:/var/www/html/config
+    - ${host}-data:/var/www/html/data
 
 db:
   image: mariadb:10
